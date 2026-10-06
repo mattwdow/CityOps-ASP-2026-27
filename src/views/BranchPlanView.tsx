@@ -4,6 +4,7 @@ import { BranchPlan } from '../types/asp';
 import { ArrowLeft, CheckCircle2, ChevronRight, AlertCircle, FileText, BarChart3, Target, Calendar } from 'lucide-react';
 import FinaleParallax from '../components/FinaleParallax';
 import Footer from '../components/Footer';
+import SkeletonFooter from '../components/SkeletonFooter';
 
 import Nav from '../components/Nav';
 import Hero from '../components/Hero';
@@ -183,7 +184,7 @@ export const BranchPlanView: React.FC<BranchPlanViewProps> = ({ plan, onBackToOv
         </section>
       </main>
 
-      <Footer />
+      <SkeletonFooter plan={plan} />
     </div>
   );
 };
