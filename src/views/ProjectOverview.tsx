@@ -2,7 +2,7 @@ import React from 'react';
 import { departmentInfo } from '../data/department';
 import { allBranchPlans } from '../data/plans';
 import { BranchPlan } from '../types/asp';
-import { CheckCircle2, Circle, ArrowRight, Shield, Zap, Layers, RefreshCw } from 'lucide-react';
+import { Check, ArrowRight } from 'lucide-react';
 
 interface ProjectOverviewProps {
   onSelectBranch: (slug: string) => void;
@@ -20,74 +20,76 @@ export const ProjectOverview: React.FC<ProjectOverviewProps> = ({ onSelectBranch
   const completionPercentage = Math.round((completedSections / totalSections) * 100);
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-neutral-100 font-sans pt-16 pb-24">
-      {/* Top Banner / Department Header */}
-      <section className="border-b border-neutral-800 bg-black/60 backdrop-blur px-4 sm:px-8 py-12 lg:py-16">
+    <div className="min-h-screen bg-white text-neutral-900 font-sans pt-12 pb-24 selection:bg-black selection:text-white">
+      {/* Header / Department Overview Strip */}
+      <section className="border-b border-neutral-200 bg-neutral-50 px-4 sm:px-8 py-10 lg:py-14">
         <div className="max-w-[1300px] mx-auto">
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-8 border-b border-neutral-800">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 pb-8 border-b border-neutral-300">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 text-neutral-300 text-xs font-mono uppercase tracking-widest rounded-full mb-4">
-                <span>{departmentInfo.parentOrganization}</span>
-                <span>•</span>
+              <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-neutral-600 mb-3">
+                <span className="font-semibold text-black">{departmentInfo.parentOrganization}</span>
+                <span>/</span>
                 <span>{departmentInfo.cycle}</span>
               </div>
-              <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-white uppercase">
+              <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-black uppercase">
                 {departmentInfo.departmentName}
               </h1>
-              <p className="text-lg sm:text-xl text-neutral-400 max-w-3xl mt-3 font-normal leading-relaxed">
+              <p className="text-base sm:text-lg text-neutral-700 max-w-3xl mt-3 leading-relaxed">
                 {departmentInfo.mission}
               </p>
             </div>
 
-            {/* Department Overall ASP Progress Scorecard */}
-            <div className="bg-neutral-900 border border-neutral-800 p-6 rounded-xl min-w-[280px]">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-xs uppercase tracking-wider text-neutral-400 font-mono">Portfolio Readiness</span>
-                <span className="text-xs font-mono text-emerald-400 font-bold">{completionPercentage}% Completed</span>
+            {/* Department Plan Progress Register */}
+            <div className="bg-white border-2 border-black p-5 sm:p-6 min-w-[280px] shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+              <div className="flex items-center justify-between text-xs font-mono uppercase tracking-wider mb-2 text-neutral-600">
+                <span>Documentation Status</span>
+                <span className="font-bold text-black">{completionPercentage}% Drafted</span>
               </div>
-              <div className="w-full bg-neutral-800 h-2.5 rounded-full overflow-hidden">
+              <div className="w-full bg-neutral-200 h-2 border border-black overflow-hidden">
                 <div
-                  className="bg-emerald-400 h-full transition-all duration-700"
+                  className="bg-black h-full transition-all duration-500"
                   style={{ width: `${completionPercentage}%` }}
                 />
               </div>
-              <div className="mt-4 flex items-center justify-between text-xs text-neutral-400">
-                <span>{completedSections} of {totalSections} Sections Filled</span>
-                <span className="text-neutral-500">4 Branches Active</span>
+              <div className="mt-3 flex items-center justify-between text-xs font-mono text-neutral-600">
+                <span>{completedSections} of {totalSections} sections filed</span>
+                <span>4 branches</span>
               </div>
             </div>
           </div>
 
-          {/* Department Strategic Pillars (Synced Across All 4 Branches) */}
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {/* Department Directives Strip (Compact Metadata Row) */}
+          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {departmentInfo.coreValues.map((val, idx) => (
-              <div key={idx} className="bg-neutral-900/60 border border-neutral-800/80 p-5 rounded-lg">
-                <div className="text-neutral-400 text-xs font-mono uppercase tracking-wider mb-2">Pillar 0{idx + 1}</div>
-                <h3 className="text-sm font-bold text-white mb-1.5">{val.title}</h3>
-                <p className="text-xs text-neutral-400 leading-relaxed">{val.desc}</p>
+              <div key={idx} className="bg-white border border-neutral-300 p-4">
+                <div className="text-[11px] font-mono uppercase tracking-wider text-neutral-500 mb-1">
+                  Pillar 0{idx + 1}
+                </div>
+                <div className="text-xs font-bold uppercase tracking-tight text-black mb-1">{val.title}</div>
+                <p className="text-xs text-neutral-600 leading-normal">{val.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Main Content: Branch ASP Progress Matrix */}
-      <section className="max-w-[1300px] mx-auto px-4 sm:px-8 mt-12">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+      {/* Main Content: Branch ASP Tracker Table / Cards */}
+      <section className="max-w-[1300px] mx-auto px-4 sm:px-8 mt-10">
+        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-6 pb-3 border-b-2 border-black">
           <div>
-            <h2 className="text-2xl font-bold tracking-tight text-white uppercase">
+            <h2 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-black">
               Branch Service Plans Tracker
             </h2>
-            <p className="text-sm text-neutral-400 mt-1">
-              Select any branch to launch its dedicated scrollytelling experience or audit section population status.
+            <p className="text-xs sm:text-sm text-neutral-600 mt-0.5">
+              Select any branch to inspect current draft sections or launch the published scrollytelling report.
             </p>
           </div>
-          <div className="flex items-center gap-3 text-xs font-mono">
-            <span className="inline-flex items-center gap-1.5 text-emerald-400">
-              <CheckCircle2 size={14} /> Ready / Populated
+          <div className="text-xs font-mono text-neutral-600 flex items-center gap-4">
+            <span className="flex items-center gap-1.5 text-black font-semibold">
+              <span className="inline-block w-2.5 h-2.5 bg-black"></span> Live Content
             </span>
-            <span className="inline-flex items-center gap-1.5 text-neutral-500">
-              <Circle size={14} /> Skeleton Template
+            <span className="flex items-center gap-1.5 text-neutral-500">
+              <span className="inline-block w-2.5 h-2.5 border border-neutral-400 bg-neutral-100"></span> Template Skeleton
             </span>
           </div>
         </div>
@@ -105,50 +107,54 @@ export const ProjectOverview: React.FC<ProjectOverviewProps> = ({ onSelectBranch
             return (
               <div
                 key={branch.id}
-                className="bg-neutral-900/80 border border-neutral-800 rounded-xl p-6 sm:p-7 flex flex-col justify-between hover:border-neutral-700 transition-all shadow-sm"
+                className="bg-white border-2 border-black p-6 sm:p-7 flex flex-col justify-between hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all"
               >
                 <div>
-                  <div className="flex items-start justify-between gap-4 mb-4">
+                  <div className="flex items-start justify-between gap-4 mb-3 pb-3 border-b border-neutral-200">
                     <div className="flex items-center gap-2">
-                      <span className="text-xs font-mono px-2 py-0.5 rounded bg-neutral-800 text-neutral-300 font-semibold">
+                      <span className="text-xs font-mono font-bold bg-black text-white px-1.5 py-0.5">
                         0{idx + 1}
                       </span>
-                      <span className="text-xs font-mono uppercase tracking-wider text-neutral-400">
+                      <span className="text-xs font-mono uppercase tracking-wider text-neutral-600">
                         {branch.shortName}
                       </span>
                     </div>
 
                     <span
-                      className={`text-[11px] font-mono px-2.5 py-0.5 rounded-full uppercase tracking-wider font-semibold ${
+                      className={`text-[11px] font-mono px-2 py-0.5 uppercase tracking-wider font-bold border ${
                         isPopulated
-                          ? 'bg-emerald-950 text-emerald-300 border border-emerald-800'
-                          : 'bg-neutral-800 text-neutral-400 border border-neutral-700'
+                          ? 'bg-black text-white border-black'
+                          : 'bg-neutral-100 text-neutral-600 border-neutral-300'
                       }`}
                     >
-                      {isPopulated ? 'Live Experience' : 'Skeleton Template'}
+                      {isPopulated ? 'Published' : 'Draft Skeleton'}
                     </span>
                   </div>
 
-                  <h3 className="text-xl font-bold text-white mb-2">{branch.branchName}</h3>
-                  <p className="text-sm text-neutral-400 leading-relaxed mb-6">{branch.tagline}</p>
+                  <h3 className="text-xl font-black text-black uppercase tracking-tight mb-2">
+                    {branch.branchName}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed mb-6">
+                    {branch.tagline}
+                  </p>
 
                   {/* Section Checklist Table */}
-                  <div className="bg-neutral-950/70 border border-neutral-800/80 rounded-lg p-4 space-y-2.5 mb-6">
-                    <div className="text-[11px] font-mono uppercase tracking-wider text-neutral-500 mb-2">
-                      Content Template Sections
+                  <div className="bg-neutral-50 border border-neutral-200 p-4 space-y-2 mb-6 font-mono text-xs">
+                    <div className="text-[10px] uppercase tracking-wider text-neutral-500 font-bold mb-2 pb-1 border-b border-neutral-200">
+                      Standard Section Template Checklist
                     </div>
                     {sections.map((sec, sIdx) => (
-                      <div key={sIdx} className="flex items-center justify-between text-xs">
-                        <span className={sec.filled ? 'text-neutral-200' : 'text-neutral-500'}>
+                      <div key={sIdx} className="flex items-center justify-between py-0.5">
+                        <span className={sec.filled ? 'text-black font-medium' : 'text-neutral-500'}>
                           {sec.label}
                         </span>
                         {sec.filled ? (
-                          <span className="inline-flex items-center gap-1 text-emerald-400 font-mono text-[11px]">
-                            <CheckCircle2 size={13} /> Populated
+                          <span className="inline-flex items-center gap-1 text-black font-bold text-[11px]">
+                            <Check size={12} strokeWidth={3} /> Filed
                           </span>
                         ) : (
-                          <span className="inline-flex items-center gap-1 text-neutral-600 font-mono text-[11px]">
-                            <Circle size={13} /> Waiting on Draft
+                          <span className="text-neutral-400 text-[11px]">
+                            Pending
                           </span>
                         )}
                       </div>
@@ -156,17 +162,17 @@ export const ProjectOverview: React.FC<ProjectOverviewProps> = ({ onSelectBranch
                   </div>
                 </div>
 
-                {/* Launch CTA */}
+                {/* Launch Button */}
                 <button
                   onClick={() => onSelectBranch(branch.slug)}
-                  className={`w-full py-3 px-4 rounded-lg font-semibold text-sm flex items-center justify-center gap-2 transition-all cursor-pointer ${
+                  className={`w-full py-3 px-4 font-mono uppercase tracking-wider text-xs font-bold flex items-center justify-center gap-2 border-2 border-black transition-all cursor-pointer ${
                     isPopulated
-                      ? 'bg-white text-black hover:bg-neutral-200 shadow-md'
-                      : 'bg-neutral-800 text-neutral-200 hover:bg-neutral-700 border border-neutral-700'
+                      ? 'bg-black text-white hover:bg-neutral-800'
+                      : 'bg-white text-black hover:bg-neutral-100'
                   }`}
                 >
-                  <span>{isPopulated ? `View ${branch.shortName} Annual Plan` : `Preview ${branch.shortName} Template`}</span>
-                  <ArrowRight size={16} />
+                  <span>{isPopulated ? `Open ${branch.shortName} Plan` : `Preview ${branch.shortName} Skeleton`}</span>
+                  <ArrowRight size={14} />
                 </button>
               </div>
             );
@@ -174,17 +180,13 @@ export const ProjectOverview: React.FC<ProjectOverviewProps> = ({ onSelectBranch
         </div>
       </section>
 
-      {/* Sync Strategy Note */}
-      <section className="max-w-[1300px] mx-auto px-4 sm:px-8 mt-16 pt-8 border-t border-neutral-800 text-neutral-500 text-xs">
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-          <p>
-            City Operations Annual Service Plan System. Content and templates managed centrally via unified TypeScript schemas.
-          </p>
-          <div className="font-mono text-neutral-400">
-            Node.js / Codespaces Ready
-          </div>
+      {/* Footer Info Strip */}
+      <footer className="max-w-[1300px] mx-auto px-4 sm:px-8 mt-16 pt-6 border-t border-neutral-200 text-neutral-500 text-xs font-mono">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div>City Operations Annual Service Plans • City of Edmonton</div>
+          <div>Node.js and GitHub Codespaces Build Environment</div>
         </div>
-      </section>
+      </footer>
     </div>
   );
 };
