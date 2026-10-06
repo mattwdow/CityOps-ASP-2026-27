@@ -20,7 +20,7 @@ export default function Nav() {
   }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] flex flex-col justify-center px-2 md:px-8 min-h-16 py-2 ${scrolled ? 'bg-primary/95 backdrop-blur-md shadow-md border-b-0' : 'bg-primary border-b border-white/20'}`}>
+    <nav className={`fixed top-12 left-0 w-full z-50 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] flex flex-col justify-center px-2 md:px-8 min-h-16 py-2 ${scrolled ? 'bg-primary/95 backdrop-blur-md shadow-md border-b-0' : 'bg-primary border-b border-white/20'}`}>
       <div className="flex flex-col lg:flex-row items-center justify-between w-full max-w-[1400px] mx-auto gap-2 lg:gap-8">
         <div className="text-[clamp(10px,2vw,16px)] font-bold tracking-wider uppercase text-white whitespace-nowrap flex-shrink-0 text-center">
           ETS Annual Service Plan 25/26

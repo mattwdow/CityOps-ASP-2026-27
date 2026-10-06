@@ -5,7 +5,7 @@ import { ArrowLeft, CheckCircle2, ChevronRight, AlertCircle, FileText, BarChart3
 import FinaleParallax from '../components/FinaleParallax';
 import Footer from '../components/Footer';
 
-// ETS-specific components for the live ETS dashboard
+import Nav from '../components/Nav';
 import Hero from '../components/Hero';
 import Message from '../components/Message';
 import Objectives from '../components/Objectives';
@@ -21,36 +21,11 @@ interface BranchPlanViewProps {
 }
 
 export const BranchPlanView: React.FC<BranchPlanViewProps> = ({ plan, onBackToOverview }) => {
-  // If this is ETS, render the full specialized scrollytelling experience
+  // If this is ETS, render the original specialized scrollytelling experience
   if (plan.slug === 'ets') {
     return (
       <div className="w-full flex-grow flex flex-col relative text-on-background bg-white">
-        {/* Branch Sub-Nav Banner */}
-        <div className="sticky top-12 z-40 bg-[#003461] text-white px-4 sm:px-8 py-2.5 flex items-center justify-between border-b border-[#00213d] shadow-sm">
-          <div className="flex items-center gap-4">
-            <button
-              onClick={onBackToOverview}
-              className="text-xs uppercase tracking-wider font-semibold text-white/80 hover:text-white flex items-center gap-1.5 transition-colors cursor-pointer"
-            >
-              <ArrowLeft size={14} /> Back to Overview
-            </button>
-            <span className="text-white/30">|</span>
-            <span className="text-xs font-bold uppercase tracking-wider text-[#F4B223]">
-              {plan.branchName} — 2026–27 ASP
-            </span>
-          </div>
-
-          <div className="hidden md:flex items-center gap-4 text-xs font-medium text-white/80">
-            <a href="#message" className="hover:text-white transition-colors">Manager Message</a>
-            <a href="#objectives" className="hover:text-white transition-colors">Objectives</a>
-            <a href="#impact" className="hover:text-white transition-colors">By The Numbers</a>
-            <a href="#results" className="hover:text-white transition-colors">Results</a>
-            <a href="#highlights" className="hover:text-white transition-colors">Highlights</a>
-            <a href="#service-plan" className="hover:text-white transition-colors">Service Plan 2026</a>
-          </div>
-        </div>
-
-        {/* Existing High-Impact ETS Scrollytelling Assembly */}
+        <Nav />
         <main id="main-content" tabIndex={-1} className="flex-grow flex flex-col w-full overflow-x-hidden focus:outline-none">
           <Hero />
           <div id="message"><Message /></div>
@@ -72,33 +47,9 @@ export const BranchPlanView: React.FC<BranchPlanViewProps> = ({ plan, onBackToOv
   // SKELETON BRANCH VIEW (Fleet & Facilities, Parks & Roads, Waste Management)
   return (
     <div className="w-full flex-grow flex flex-col relative text-neutral-900 bg-neutral-50 font-sans">
-      {/* Branch Sub-Nav Banner */}
-      <div 
-        className="sticky top-12 z-40 text-white px-4 sm:px-8 py-2.5 flex items-center justify-between shadow-sm"
-        style={{ backgroundColor: plan.accentColor }}
-      >
-        <div className="flex items-center gap-4">
-          <button
-            onClick={onBackToOverview}
-            className="text-xs uppercase tracking-wider font-semibold text-white/80 hover:text-white flex items-center gap-1.5 transition-colors cursor-pointer"
-          >
-            <ArrowLeft size={14} /> Back to Overview
-          </button>
-          <span className="text-white/30">|</span>
-          <span className="text-xs font-bold uppercase tracking-wider text-white">
-            {plan.branchName}
-          </span>
-        </div>
-
-        <div className="inline-flex items-center gap-2 bg-black/20 text-white text-xs px-2.5 py-0.5 rounded-full font-mono">
-          <AlertCircle size={13} />
-          <span>Skeleton Template Mode</span>
-        </div>
-      </div>
-
       {/* Skeleton Hero Header */}
       <header 
-        className="text-white py-20 px-6 sm:px-12 relative overflow-hidden"
+        className="text-white pt-24 pb-16 px-6 sm:px-12 relative overflow-hidden"
         style={{ backgroundColor: plan.accentColor }}
       >
         <div className="max-w-[1100px] mx-auto relative z-10">

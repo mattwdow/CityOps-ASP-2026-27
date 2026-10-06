@@ -12,7 +12,7 @@ export default function Hero() {
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
 
   return (
-    <div className="flex flex-col w-full overflow-hidden relative pt-16">
+    <div className="flex flex-col w-full overflow-hidden relative pt-28">
       <motion.div 
         className="relative w-full overflow-hidden group h-auto"
         initial={{ y: 50, opacity: 0 }}
