@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-tertiary: #452f00;
+  --color-on-secondary: #ffffff;
+  --color-surface: #f5faff;
+  --color-on-primary-container: #8abcff;
+  --color-on-primary: #ffffff;
+  --color-secondary-fixed: #dce3e8;
+  --color-surface-tint: #27609d;
+  --color-primary: #003461;
+  --color-tertiary-fixed-dim: #febb2d;
+  --color-on-background: #161c21;
+  --color-on-tertiary: #ffffff;
+  --color-on-error: #ffffff;
+  --color-surface-container-highest: #dce3ea;
+  --color-secondary-container: #dae1e6;
+  --color-surface-variant: #dce3ea;
+  --color-outline: #727781;
+  --color-error: #ba1a1a;
+  --color-on-primary-fixed-variant: #004882;
+  --color-on-surface: #161c21;
+  --color-on-surface-variant: #424750;
+  --color-error-container: #ffdad6;
+  --color-tertiary-fixed: #ffdea9;
+  --color-primary-fixed: #d3e4ff;
+  --color-on-tertiary-fixed-variant: #5e4100;
+  --color-on-secondary-fixed-variant: #41484c;
+  --color-inverse-on-surface: #ebf2f8;
+  --color-on-secondary-fixed: #161d20;
+  --color-surface-bright: #f5faff;
+  --color-secondary: #585f64;
+  --color-tertiary-container: #624400;
+  --color-on-secondary-container: #5c6468;
+  --color-on-primary-fixed: #001c38;
+  --color-outline-variant: #c2c6d1;
+  --color-on-error-container: #93000a;
+  --color-inverse-surface: #2a3136;
+  --color-background: #f5faff;
+  --color-surface-container: #e8eff5;
+  --color-on-tertiary-container: #efad1d;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-high: #e2e9ef;
+  --color-surface-dim: #d4dbe1;
+  --color-surface-container-low: #eef4fb;
+  --color-secondary-fixed-dim: #c0c7cc;
+  --color-primary-container: #004b87;
+  --color-on-tertiary-fixed: #271900;
+  --color-primary-fixed-dim: #a3c9ff;
+  --color-inverse-primary: #a3c9ff;
+
+  --spacing-section-gap: 6rem;
+  --spacing-unit-base: 1rem;
+  --spacing-transition-padding: 10rem;
+  --spacing-content-narrow: 800px;
+  --spacing-gutter: 2rem;
+  --spacing-grid-wide: 1200px;
+}
+
+@utility text-body-base {
+  font-size: 18px;
+  line-height: 1.8;
+  font-weight: 400;
+}
+@utility text-headline-md {
+  font-size: 32px;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+@utility text-display-xl {
+  font-size: clamp(3rem, 6vw, 80px);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  font-weight: 300;
+}
+@utility text-body-lg {
+  font-size: 21px;
+  line-height: 1.8;
+  font-weight: 400;
+}
+@utility text-label-sm {
+  font-size: 14px;
+  line-height: 1.0;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+}
+@utility text-headline-lg {
+  font-size: 48px;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  font-weight: 600;
+}
+
+@utility font-body-base { font-family: "Inter", sans-serif; }
+@utility font-headline-md { font-family: "Inter", sans-serif; }
+@utility font-display-xl { font-family: "Inter", sans-serif; }
+@utility font-body-lg { font-family: "Inter", sans-serif; }
+@utility font-label-sm { font-family: "Inter", sans-serif; }
+@utility font-headline-lg { font-family: "Inter", sans-serif; }
+@utility font-signature { font-family: "Dancing Script", cursive; }
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem; /* space for the fixed nav */
+  }
+  body {
+    @apply bg-background text-on-surface-variant font-body-base antialiased;
+  }
+}
+
+@utility section-symphonic {
+  padding-top: clamp(4rem, 8vw, 8rem);
+  padding-bottom: clamp(4rem, 8vw, 8rem);
+}
+
+@utility section-symphonic-first {
+  /* Extra top padding for first section to prevent nav overlap */
+  padding-top: clamp(7rem, 10vw + 2rem, 10rem); 
+  padding-bottom: clamp(4rem, 8vw, 8rem);
+}
+
+@utility section-symphonic-last {
+  padding-top: clamp(4rem, 8vw, 8rem);
+  /* Extra bottom padding to blend smoothly into the footer */
+  padding-bottom: clamp(7rem, 10vw + 2rem, 12rem);
+}
