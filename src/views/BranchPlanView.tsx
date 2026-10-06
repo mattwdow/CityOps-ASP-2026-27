@@ -73,21 +73,27 @@ export const BranchPlanView: React.FC<BranchPlanViewProps> = ({ plan, onBackToOv
       {/* Structured Template Wireframe Sections */}
       <main className="max-w-[1100px] mx-auto px-6 sm:px-12 py-16 space-y-16 w-full">
         {/* 1. BRANCH MANAGER MESSAGE SKELETON */}
-        <section className="bg-white border-2 border-dashed border-neutral-300 rounded-xl p-8">
+        <section 
+          className="bg-white border-2 rounded-none p-8 shadow-sm"
+          style={{ borderColor: plan.accentColor }}
+        >
           <div className="flex items-center gap-3 text-neutral-500 font-mono text-xs uppercase tracking-wider mb-4 pb-3 border-b border-neutral-200">
-            <FileText size={16} />
-            <span>1. Branch Manager Message (Template Slot)</span>
+            <FileText size={16} style={{ color: plan.accentColor }} />
+            <span className="font-bold text-neutral-800">1. Branch Manager Message (Template Slot)</span>
           </div>
           <div className="flex flex-col md:flex-row gap-6 items-start">
-            <div className="w-24 h-24 rounded-full bg-neutral-200 flex items-center justify-center text-neutral-400 font-mono text-xs text-center shrink-0">
+            <div 
+              className="w-24 h-24 border-2 flex items-center justify-center font-mono text-xs text-center shrink-0 font-bold"
+              style={{ borderColor: plan.accentColor, backgroundColor: `${plan.accentColor}10`, color: plan.accentColor }}
+            >
               Manager Photo
             </div>
             <div className="space-y-3 flex-grow">
-              <h3 className="text-xl font-bold text-neutral-800">{plan.managerMessage.name}</h3>
-              <p className="text-sm font-semibold text-neutral-500">{plan.managerMessage.title}</p>
-              <div className="space-y-3 pt-2 text-neutral-600 text-sm leading-relaxed">
+              <h3 className="text-xl font-bold text-neutral-900">{plan.managerMessage.name}</h3>
+              <p className="text-sm font-semibold" style={{ color: plan.accentColor }}>{plan.managerMessage.title}</p>
+              <div className="space-y-3 pt-2 text-neutral-700 text-sm leading-relaxed">
                 {plan.managerMessage.paragraphs.map((p, idx) => (
-                  <p key={idx} className={idx === 1 ? 'italic text-neutral-400' : ''}>{p}</p>
+                  <p key={idx} className={idx === 1 ? 'italic text-neutral-500' : ''}>{p}</p>
                 ))}
               </div>
             </div>
@@ -95,44 +101,57 @@ export const BranchPlanView: React.FC<BranchPlanViewProps> = ({ plan, onBackToOv
         </section>
 
         {/* 2. KEY IMPACT METRICS SKELETON */}
-        <section className="bg-white border-2 border-dashed border-neutral-300 rounded-xl p-8">
+        <section 
+          className="bg-white border-2 rounded-none p-8 shadow-sm"
+          style={{ borderColor: plan.accentColor }}
+        >
           <div className="flex items-center gap-3 text-neutral-500 font-mono text-xs uppercase tracking-wider mb-6 pb-3 border-b border-neutral-200">
-            <BarChart3 size={16} />
-            <span>2. Key Impact Metrics - Infographics (Template Slot)</span>
+            <BarChart3 size={16} style={{ color: plan.accentColor }} />
+            <span className="font-bold text-neutral-800">2. Key Impact Metrics - Infographics (Template Slot)</span>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {plan.metrics.map((m, idx) => (
-              <div key={idx} className="bg-neutral-100 p-6 rounded-lg text-center border border-neutral-200">
-                <div className="text-xs uppercase tracking-wider text-neutral-500 font-mono mb-2">Metric 0{idx + 1}</div>
-                <div className="text-4xl font-extrabold text-neutral-800 my-2">[Value {m.suffix}]</div>
-                <div className="text-sm font-bold text-neutral-700">{m.label}</div>
-                <div className="text-xs text-neutral-400 mt-2">{m.description}</div>
+              <div 
+                key={idx} 
+                className="p-6 text-center border-2 bg-white"
+                style={{ borderColor: `${plan.accentColor}40` }}
+              >
+                <div className="text-xs uppercase tracking-wider font-mono mb-2" style={{ color: plan.accentColor }}>Metric 0{idx + 1}</div>
+                <div className="text-4xl font-extrabold text-neutral-900 my-2">[Value {m.suffix}]</div>
+                <div className="text-sm font-bold text-neutral-800">{m.label}</div>
+                <div className="text-xs text-neutral-500 mt-2">{m.description}</div>
               </div>
             ))}
           </div>
         </section>
 
         {/* 3. RESULTS FROM 2025 SKELETON */}
-        <section className="bg-white border-2 border-dashed border-neutral-300 rounded-xl p-8">
+        <section 
+          className="bg-white border-2 rounded-none p-8 shadow-sm"
+          style={{ borderColor: plan.accentColor }}
+        >
           <div className="flex items-center gap-3 text-neutral-500 font-mono text-xs uppercase tracking-wider mb-6 pb-3 border-b border-neutral-200">
-            <Target size={16} />
-            <span>3. Results from 2025 - Objectives & Deliverables (Template Slot)</span>
+            <Target size={16} style={{ color: plan.accentColor }} />
+            <span className="font-bold text-neutral-800">3. Results from 2025 - Objectives and Deliverables (Template Slot)</span>
           </div>
           {plan.results.map((res, idx) => (
             <div key={idx} className="space-y-6">
               <div>
-                <span className="text-xs font-mono uppercase tracking-wider text-neutral-400">Objective 0{idx + 1}</span>
-                <h3 className="text-xl font-bold text-neutral-800">{res.title}</h3>
-                <p className="text-sm text-neutral-500 mt-1">{res.description}</p>
+                <span className="text-xs font-mono uppercase tracking-wider text-neutral-500">Objective 0{idx + 1}</span>
+                <h3 className="text-xl font-bold text-neutral-900">{res.title}</h3>
+                <p className="text-sm text-neutral-600 mt-1">{res.description}</p>
               </div>
 
-              <div className="bg-neutral-50 p-6 rounded-lg border border-neutral-200">
-                <h4 className="text-xs font-mono uppercase tracking-wider text-neutral-600 mb-3 font-semibold">Actions and Deliverables:</h4>
+              <div 
+                className="p-6 border-l-4 bg-neutral-50 border border-neutral-200"
+                style={{ borderLeftColor: plan.accentColor }}
+              >
+                <h4 className="text-xs font-mono uppercase tracking-wider mb-3 font-bold" style={{ color: plan.accentColor }}>Actions and Deliverables:</h4>
                 <ul className="space-y-3">
                   {res.actions.map((act, aIdx) => (
                     <li key={aIdx} className="text-sm">
-                      <strong className="text-neutral-800 font-semibold">{act.title}:</strong>{' '}
-                      <span className="text-neutral-500">{act.description}</span>
+                      <strong className="text-neutral-900 font-semibold">{act.title}:</strong>{' '}
+                      <span className="text-neutral-600">{act.description}</span>
                     </li>
                   ))}
                 </ul>

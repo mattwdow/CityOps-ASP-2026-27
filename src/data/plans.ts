@@ -229,9 +229,9 @@ export const fleetPlan: BranchPlan = {
   branchName: 'Fleet and Facility Services',
   shortName: 'Fleet and Facilities',
   tagline: 'Maintaining the City of Edmonton’s civic infrastructure, municipal buildings, and vehicle fleet lifecycle.',
-  accentColor: '#1B4D3E',
-  accentLight: '#52B788',
-  accentDark: '#0D281E',
+  accentColor: '#1E3A8A',
+  accentLight: '#60A5FA',
+  accentDark: '#0F172A',
   isSkeleton: true,
   completion: {
     managerMessage: false,
@@ -243,7 +243,7 @@ export const fleetPlan: BranchPlan = {
     name: '[Branch Manager Name]',
     title: 'Branch Manager, Fleet and Facility Services',
     paragraphs: [
-      'Welcome to the 2026–2027 Annual Service Plan for Fleet and Facility Services.',
+      'Welcome to the 2026-27 Annual Service Plan for Fleet and Facility Services.',
       '[Placeholder: Branch Manager message introducing civic facility upkeep, fleet decarbonization milestones, and capital maintenance priorities will be inserted here when draft content is finalized.]'
     ],
     signatureText: '[Manager Signature]'
@@ -307,9 +307,9 @@ export const parksRoadsPlan: BranchPlan = {
   branchName: 'Parks and Roads Services',
   shortName: 'Parks and Roads',
   tagline: 'Preserving vibrant parks, managing urban forestry, and keeping Edmonton roads safe and operational in all seasons.',
-  accentColor: '#2E5A88',
-  accentLight: '#68B0AB',
-  accentDark: '#17304B',
+  accentColor: '#EA580C',
+  accentLight: '#F97316',
+  accentDark: '#1C1917',
   isSkeleton: true,
   completion: {
     managerMessage: false,
@@ -321,7 +321,7 @@ export const parksRoadsPlan: BranchPlan = {
     name: '[Branch Manager Name]',
     title: 'Branch Manager, Parks and Roads Services',
     paragraphs: [
-      'Welcome to the 2026–2027 Annual Service Plan for Parks and Roads Services.',
+      'Welcome to the 2026-27 Annual Service Plan for Parks and Roads Services.',
       '[Placeholder: Branch Manager message introducing seasonal roadway maintenance, snow & ice operations, pothole repair, and urban canopy preservation will be inserted here.]'
     ],
     signatureText: '[Manager Signature]'
@@ -385,9 +385,9 @@ export const wastePlan: BranchPlan = {
   branchName: 'Waste Management Services',
   shortName: 'Waste Services',
   tagline: 'Leading sustainable waste collection, processing, and circular economy innovation across Edmonton.',
-  accentColor: '#5C3D2E',
-  accentLight: '#B85D19',
-  accentDark: '#382319',
+  accentColor: '#15803D',
+  accentLight: '#84CC16',
+  accentDark: '#14532D',
   isSkeleton: true,
   completion: {
     managerMessage: false,
@@ -399,7 +399,7 @@ export const wastePlan: BranchPlan = {
     name: '[Branch Manager Name]',
     title: 'Branch Manager, Waste Management Services',
     paragraphs: [
-      'Welcome to the 2026–2027 Annual Service Plan for Waste Management Services.',
+      'Welcome to the 2026-27 Annual Service Plan for Waste Management Services.',
       '[Placeholder: Branch Manager message introducing 25-year Waste Strategy execution, curbside diversion rates, and Edmonton Waste Management Centre initiatives will be inserted here.]'
     ],
     signatureText: '[Manager Signature]'
