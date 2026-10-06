@@ -10,13 +10,13 @@ export const MasterHeader: React.FC<MasterHeaderProps> = ({ currentPath, onNavig
   const branches = [
     { slug: '', label: 'Overview Hub', short: 'Overview', isOverview: true },
     { slug: 'ets', label: 'Edmonton Transit Service', short: 'ETS', plan: allBranchPlans.ets },
-    { slug: 'fleet', label: 'Fleet & Facilities', short: 'Fleet', plan: allBranchPlans.fleet },
-    { slug: 'parks-roads', label: 'Parks & Roads', short: 'Parks & Roads', plan: allBranchPlans['parks-roads'] },
+    { slug: 'fleet', label: 'Fleet and Facilities', short: 'Fleet', plan: allBranchPlans.fleet },
+    { slug: 'parks-roads', label: 'Parks and Roads', short: 'Parks and Roads', plan: allBranchPlans['parks-roads'] },
     { slug: 'waste', label: 'Waste Management', short: 'Waste', plan: allBranchPlans.waste },
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-[60] bg-black text-white border-b border-neutral-800 font-sans shadow-md">
+    <header className="fixed top-0 left-0 right-0 z-[60] bg-black text-white border-b border-neutral-800 font-['Manrope',sans-serif] shadow-md">
       <div className="max-w-[1500px] mx-auto px-4 sm:px-6 h-12 flex items-center justify-between gap-4">
         {/* Brand identity */}
         <div className="flex items-center gap-3 shrink-0">
@@ -25,7 +25,7 @@ export const MasterHeader: React.FC<MasterHeaderProps> = ({ currentPath, onNavig
               COE
             </span>
             <span className="text-xs sm:text-sm font-semibold tracking-wide text-neutral-200 uppercase">
-              City Operations <span className="text-neutral-500 hidden md:inline">| ASP 2026–27</span>
+              City Operations <span className="text-neutral-500 hidden md:inline">| ASP 2026-27</span>
             </span>
           </div>
         </div>
