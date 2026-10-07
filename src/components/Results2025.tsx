@@ -71,9 +71,9 @@ const results = [
     ],
     metricsTitle: 'Performance Review',
     metrics: [
-      { measure: 'Rider Satisfaction with Arc', target: '≥ 80%', result: '71%', status: '⬇️', statusColor: 'bg-error-container text-error border-error/20' },
-      { measure: 'Rider Satisfaction with Availability to Find Information', target: '≥ 80%', result: '73%', status: '⬇️', statusColor: 'bg-error-container text-error border-error/20' },
-      { measure: 'Rider Satisfaction with Number of Transfers', target: '≥ 80%', result: '66%', status: '⬇️', statusColor: 'bg-error-container text-error border-error/20' },
+      { measure: 'Rider Satisfaction with Arc', target: '≥ 80%', result: '71%', status: '⬇️', statusColor: 'bg-red-50 text-red-900 border-red-700' },
+      { measure: 'Rider Satisfaction with Availability to Find Information', target: '≥ 80%', result: '73%', status: '⬇️', statusColor: 'bg-red-50 text-red-900 border-red-700' },
+      { measure: 'Rider Satisfaction with Number of Transfers', target: '≥ 80%', result: '66%', status: '⬇️', statusColor: 'bg-red-50 text-red-900 border-red-700' },
     ],
     breakout: {
       type: 'split',
@@ -95,9 +95,9 @@ const results = [
     ],
     metricsTitle: 'Performance Review',
     metrics: [
-      { measure: 'Rider Satisfaction with Bus/Train Arriving On-Time', target: '≥ 80%', result: '73%', status: '⬇️', statusColor: 'bg-error-container text-error border-error/20' },
-      { measure: 'Bus On-Time Performance', target: '≥ 90%', result: '83%', status: '⬇️', statusColor: 'bg-error-container text-error border-error/20' },
-      { measure: 'LRT On-Time Performance', target: '≥ 90%', result: '85%', status: '⬇️', statusColor: 'bg-error-container text-error border-error/20' },
+      { measure: 'Rider Satisfaction with Bus/Train Arriving On-Time', target: '≥ 80%', result: '73%', status: '⬇️', statusColor: 'bg-red-50 text-red-900 border-red-700' },
+      { measure: 'Bus On-Time Performance', target: '≥ 90%', result: '83%', status: '⬇️', statusColor: 'bg-red-50 text-red-900 border-red-700' },
+      { measure: 'LRT On-Time Performance', target: '≥ 90%', result: '85%', status: '⬇️', statusColor: 'bg-red-50 text-red-900 border-red-700' },
       { measure: 'DATS On-Time Performance', target: '≥ 90%', result: '90%', status: '✅', statusColor: 'bg-primary/10 text-primary border-primary/20' },
     ],
     breakout: {
@@ -124,7 +124,7 @@ const results = [
     ],
     metricsTitle: 'Performance Review',
     metrics: [
-      { measure: 'Rider Perceptions of Safety', target: '≥ 80%', result: '61%', status: '⬇️', statusColor: 'bg-error-container text-error border-error/20' },
+      { measure: 'Rider Perceptions of Safety', target: '≥ 80%', result: '61%', status: '⬇️', statusColor: 'bg-red-50 text-red-900 border-red-700' },
       { measure: 'Non-Criminal Incidents', target: '≤ 0.1%', result: '0.06%', status: '✅', statusIconColor: 'text-primary', statusColor: 'bg-surface-container-high text-on-surface-variant border-outline-variant/30' },
     ],
     breakout: {
@@ -149,8 +149,8 @@ const results = [
     ],
     metricsTitle: 'Performance Metrics',
     metrics: [
-      { measure: 'Rider satisfaction with accessibility of bus stop/LRT station', target: '≥ 80%', result: '65%', status: '⬇️', statusColor: 'bg-error-container text-error border-error/20' },
-      { measure: 'Perception of fare affordability for the low income transit pass', target: '≥ 80%', result: '79%', status: '⬇️', statusColor: 'bg-error-container text-error border-error/20' },
+      { measure: 'Rider satisfaction with accessibility of bus stop/LRT station', target: '≥ 80%', result: '65%', status: '⬇️', statusColor: 'bg-red-50 text-red-900 border-red-700' },
+      { measure: 'Perception of fare affordability for the low income transit pass', target: '≥ 80%', result: '79%', status: '⬇️', statusColor: 'bg-red-50 text-red-900 border-red-700' },
     ],
     breakout: {
       type: 'full-image',
@@ -207,7 +207,7 @@ export default function Results2025() {
 
               <div className="mt-section-gap">
                 <h2 className="font-headline-md text-headline-md text-on-surface mb-8">{section.metricsTitle}</h2>
-                <div className="w-full bg-surface-container-lowest border-2 border-[#003461] rounded-xl overflow-hidden shadow-sm mt-4">
+                <div className="w-full bg-surface-container-lowest border-2 border-[#003461] rounded-none overflow-hidden shadow-sm mt-4">
                   <div className="grid grid-cols-12 gap-4 pb-4 pt-6 px-6 border-b border-surface-variant font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">
                     <div className="col-span-8">Performance Measure</div>
                     <div className="col-span-2 text-right">Target</div>
@@ -223,9 +223,9 @@ export default function Results2025() {
                           {metric.target}
                         </div>
                         <div className="col-span-2 flex justify-end">
-                          <span className={`${metric.statusColor} px-3 py-1 rounded font-label-sm text-label-sm border inline-flex items-center gap-1`}>
+                          <span className={`${metric.statusColor} px-3 py-1 rounded-none font-mono text-xs font-bold border-2 inline-flex items-center gap-1.5`}>
                             {metric.result}
-                            <span className={`text-[16px] grayscale contrast-125 opacity-70 ${metric.statusIconColor || ''}`}>{metric.status}</span>
+                            <span className="text-[13px]">{metric.status}</span>
                           </span>
                         </div>
                       </div>
