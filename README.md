@@ -45,9 +45,27 @@ Because Node.js runs directly in GitHub Codespaces, you can spin up the full liv
 
 ---
 
+## ⚡ Branch Scoping Slash Commands
+
+You can scope updates directly to individual branch service plans or apply changes department-wide using dedicated commands across any conversation turn:
+
+| Command | Scope | Target Data / Components |
+| :--- | :--- | :--- |
+| `/pars` | **Parks and Roads Services** | Updates `parksRoadsPlan` in `src/data/plans.ts` and assets in `src/assets/parks-roads/` |
+| `/ets` | **Edmonton Transit Service** | Updates `etsPlan` in `src/data/plans.ts`, specialized components in `src/components/`, and assets in `src/assets/` |
+| `/ffs` | **Fleet and Facility Services** | Updates `fleetPlan` in `src/data/plans.ts` and assets in `src/assets/fleet/` |
+| `/waste` | **Waste Management Services** | Updates `wastePlan` in `src/data/plans.ts` and assets in `src/assets/waste/` |
+| `/all` | **Universal Department-Wide** | Synchronizes changes across all 4 branches, shared strategy in `src/data/department.ts`, and the landing overview hub |
+
+These commands are registered as persistent Antigravity workspace skills and rules under `.agents/`.
+
+---
+
 ## 🗺️ Roadmap: Multi-Plan Template Expansion
 
-When adding the 3 additional service plans, the project can scale across two clean paths:
-
-- **Option A (Multi-route SPA):** Add lightweight routing (React Router) with a unified City Operations launchpad at `/` and dedicated scrollytelling experiences at `/ets`, `/plan-2`, `/plan-3`, and `/plan-4`.
-- **Option B (Monorepo Workspaces):** Convert root `package.json` to npm workspaces (`apps/ets`, `apps/plan-2`, `apps/plan-3`, `apps/plan-4`, `packages/shared-ui`) sharing design tokens, scrollytelling hooks, and navigation chrome.
+When adding the 3 additional service plans, the project scales through unified routing:
+- **Landing Overview Hub:** `#/`
+- **Edmonton Transit Service:** `#/ets`
+- **Fleet and Facility Services:** `#/fleet`
+- **Parks and Roads Services:** `#/parks-roads`
+- **Waste Management Services:** `#/waste`
