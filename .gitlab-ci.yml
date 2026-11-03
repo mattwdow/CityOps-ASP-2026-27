@@ -1,0 +1,61 @@
+# ==============================================================================
+# GitLab CI/CD Pipeline for Google Cloud Run Deployment
+# ==============================================================================
+
+stages:
+  - build
+  - deploy
+
+variables:
+  # Customize these or override them in GitLab Settings > CI/CD > Variables
+  GCP_REGION: "northamerica-northeast1" # Montreal (closest to Edmonton), or us-central1
+  SERVICE_NAME: "cityops-asp-2026"
+  IMAGE_TAG: "gcr.io/${GCP_PROJECT_ID}/${SERVICE_NAME}:${CI_COMMIT_SHA}"
+
+# ------------------------------------------------------------------------------
+# Stage 1: Build & Push Docker Image using Kaniko (rootless, secure on GitLab CI)
+# ------------------------------------------------------------------------------
+build-image:
+  stage: build
+  image:
+    name: gcr.io/kaniko-project/executor:v1.20.0-debug
+    entrypoint: [""]
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
+  before_script:
+    - mkdir -p /kaniko/.docker
+    # Authenticate Kaniko against Google Container Registry using GCP_SERVICE_ACCOUNT_KEY
+    - echo "{\"auths\":{\"https://gcr.io\":{\"auth\":\"$(echo -n _json_key:${GCP_SERVICE_ACCOUNT_KEY} | base64 | tr -d '\n')\"}}}" > /kaniko/.docker/config.json
+  script:
+    - /kaniko/executor
+      --context "${CI_PROJECT_DIR}"
+      --dockerfile "${CI_PROJECT_DIR}/Dockerfile"
+      --destination "${IMAGE_TAG}"
+      --destination "gcr.io/${GCP_PROJECT_ID}/${SERVICE_NAME}:latest"
+      --cache=true
+
+# ------------------------------------------------------------------------------
+# Stage 2: Deploy to Google Cloud Run
+# ------------------------------------------------------------------------------
+deploy-cloud-run:
+  stage: deploy
+  image: google/cloud-sdk:alpine
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
+  before_script:
+    # Authenticate gcloud CLI with the Service Account JSON key
+    - echo "${GCP_SERVICE_ACCOUNT_KEY}" > /tmp/gcp_key.json
+    - gcloud auth activate-service-account --key-file=/tmp/gcp_key.json
+    - gcloud config set project "${GCP_PROJECT_ID}"
+  script:
+    - echo "Deploying ${SERVICE_NAME} to Google Cloud Run in ${GCP_REGION}..."
+    - gcloud run deploy "${SERVICE_NAME}"
+      --image "${IMAGE_TAG}"
+      --platform managed
+      --region "${GCP_REGION}"
+      --allow-unauthenticated
+      --port 8080
+    - echo "Service URL:"
+    - gcloud run services describe "${SERVICE_NAME}" --platform managed --region "${GCP_REGION}" --format="value(status.url)"
+  after_script:
+    - rm -f /tmp/gcp_key.json
