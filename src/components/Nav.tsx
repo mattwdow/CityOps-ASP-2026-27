@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useMotionTemplate, useReducedMotion } from 'motion/react';
 import { TrainFront } from 'lucide-react';
+import { useMotionPreference } from '../context/MotionContext';
 
 export default function Nav() {
   const prefersReducedMotion = useReducedMotion();
+  const { animationsEnabled, toggleAnimations } = useMotionPreference();
   const [scrolled, setScrolled] = useState(false);
   const { scrollYProgress } = useScroll();
   const trainPosition = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
@@ -19,6 +21,8 @@ export default function Nav() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const shouldDisableMotion = prefersReducedMotion || !animationsEnabled;
+
   return (
     <nav className={`fixed top-12 left-0 w-full z-50 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] flex flex-col justify-center px-2 md:px-8 min-h-16 py-2 ${scrolled ? 'bg-primary/95 backdrop-blur-md shadow-md border-b-0' : 'bg-primary border-b border-white/20'}`}>
       <div className="flex flex-col lg:flex-row items-center justify-between w-full max-w-[1400px] mx-auto gap-2 lg:gap-8">
@@ -32,11 +36,27 @@ export default function Nav() {
           <a className="text-white/80 hover:text-white transition-all duration-400 ease-[cubic-bezier(0.4,0,0.2,1)] whitespace-nowrap focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-tertiary-fixed-dim rounded" href="#results">Results From 2025</a>
           <a className="text-white/80 hover:text-white transition-all duration-400 ease-[cubic-bezier(0.4,0,0.2,1)] whitespace-nowrap focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-tertiary-fixed-dim rounded" href="#highlights">Highlights From 2025</a>
           <a className="text-white/80 hover:text-white transition-all duration-400 ease-[cubic-bezier(0.4,0,0.2,1)] whitespace-nowrap focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-tertiary-fixed-dim rounded" href="#service-plan">Service Plan 2026</a>
+
+          {/* Accessible Animation Toggle Button: Circular 'A' */}
+          <button
+            onClick={toggleAnimations}
+            type="button"
+            className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold transition-colors shrink-0 ml-1 cursor-pointer border ${
+              animationsEnabled
+                ? 'border-white/40 text-white/80 hover:text-white hover:border-white bg-white/10'
+                : 'border-[#F4B223] text-[#003461] bg-[#F4B223] shadow-sm'
+            }`}
+            title={animationsEnabled ? 'Accessibility: Click to turn off animations' : 'Accessibility: Click to turn on animations'}
+            aria-label={animationsEnabled ? 'Turn off page animations' : 'Turn on page animations'}
+            aria-pressed={!animationsEnabled}
+          >
+            A
+          </button>
         </div>
       </div>
       
       {/* Transit Line Progress Indicator */}
-      {prefersReducedMotion ? null : (
+      {shouldDisableMotion ? null : (
         <div className="absolute -bottom-1.5 left-0 w-full h-1.5 bg-surface-variant/80 border-b border-outline/20">
           {/* Unfilled Station Dots */}
           <div className="absolute top-1/2 -translate-y-1/2 w-full flex justify-between px-[10%] xl:px-[20%] z-0">

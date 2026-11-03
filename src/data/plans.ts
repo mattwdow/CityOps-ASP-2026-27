@@ -456,8 +456,18 @@ export const wastePlan: BranchPlan = {
   ]
 };
 
+export const testPlan: BranchPlan = {
+  ...etsPlan,
+  id: 'test',
+  slug: 'test',
+  branchName: 'TEST (Design Sandbox)',
+  shortName: 'TEST',
+  tagline: 'Design testing and experimental features sandbox duplicated from ETS.',
+};
+
 export const allBranchPlans: Record<string, BranchPlan> = {
   ets: etsPlan,
+  test: testPlan,
   fleet: fleetPlan,
   'parks-roads': parksRoadsPlan,
   waste: wastePlan,

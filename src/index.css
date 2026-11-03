@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;900&family=Manrope:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,400;0,600;0,800;1,400&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Cabinet+Grotesk:wght@500;700;800;900&family=Dancing+Script:wght@400;500;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,800;1,9..144,400&family=General+Sans:wght@500;600;700&family=Inter:wght@300;400;500;600;700;900&family=Manrope:wght@300;400;500;600;700;800&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Roboto+Flex:opsz,wght@8..144,400;8..144,600;8..144,700&family=Space+Grotesk:wght@500;600;700&family=Syne:wght@600;700;800&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -93,13 +93,71 @@
   font-weight: 600;
 }
 
-@utility font-body-base { font-family: "Inter", sans-serif; }
-@utility font-headline-md { font-family: "Inter", sans-serif; }
-@utility font-display-xl { font-family: "Inter", sans-serif; }
-@utility font-body-lg { font-family: "Inter", sans-serif; }
-@utility font-label-sm { font-family: "Inter", sans-serif; }
-@utility font-headline-lg { font-family: "Inter", sans-serif; }
+@utility font-body-base { font-family: "Manrope", sans-serif; }
+@utility font-headline-md { font-family: "Manrope", sans-serif; }
+@utility font-display-xl { font-family: "Manrope", sans-serif; }
+@utility font-body-lg { font-family: "Manrope", sans-serif; }
+@utility font-label-sm { font-family: "Manrope", sans-serif; }
+@utility font-headline-lg { font-family: "Manrope", sans-serif; }
 @utility font-signature { font-family: "Dancing Script", cursive; }
+@utility font-manrope { font-family: "Manrope", sans-serif; }
+@utility font-atkinson { font-family: "Manrope", sans-serif; }
+@utility font-jakarta { font-family: "Manrope", sans-serif; }
+
+/* Golden Ratio Leading Tokens */
+@utility leading-golden { line-height: 1.618; }
+@utility leading-display { line-height: 1.08; }
+@utility leading-heading { line-height: 1.25; }
+@utility leading-subhead { line-height: 1.382; }
+
+/* Scoped Typography for /test sandbox: Strict Manrope (clean open circular zero, no slashed zeros) */
+.test-sandbox {
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  line-height: 1.618;
+}
+
+.test-sandbox h1 {
+  font-family: "Manrope", sans-serif;
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
+.test-sandbox h2 {
+  font-family: "Manrope", sans-serif;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+}
+
+.test-sandbox h3 {
+  font-family: "Manrope", sans-serif;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.test-sandbox h4,
+.test-sandbox h5,
+.test-sandbox h6,
+.test-sandbox .font-sans,
+.test-sandbox .font-manrope,
+.test-sandbox .font-jakarta {
+  font-family: "Manrope", sans-serif;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.test-sandbox p,
+.test-sandbox li,
+.test-sandbox dd,
+.test-sandbox .font-body,
+.test-sandbox .font-atkinson {
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  line-height: 1.618;
+}
 
 @layer base {
   html {
@@ -109,7 +167,57 @@
   body {
     @apply bg-background text-on-surface-variant font-body-base antialiased;
   }
+
+  /* Accessibility Reduced-Motion Master Override */
+  html[data-reduced-motion="true"],
+  html[data-reduced-motion="true"] * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }
+
+/* Oil Slick Shimmer Effect (Calibrated: 50% reduced saturation and brightness) */
+@keyframes oilSlickShift {
+  0% {
+    background-position: 0% 50%;
+    filter: brightness(0.5) saturate(0.7) hue-rotate(0deg);
+  }
+  50% {
+    background-position: 100% 50%;
+    filter: brightness(0.5) saturate(0.9) hue-rotate(45deg);
+  }
+  100% {
+    background-position: 0% 50%;
+    filter: brightness(0.5) saturate(0.7) hue-rotate(0deg);
+  }
+}
+
+.oil-slick-text {
+  color: #003461;
+  transition: color 0.4s ease, filter 0.4s ease;
+}
+
+.oil-slick-text:hover {
+  background: linear-gradient(
+    115deg,
+    #003461 0%,
+    #0d9488 20%,
+    #3b82f6 38%,
+    #a855f7 55%,
+    #ec4899 72%,
+    #eab308 88%,
+    #003461 100%
+  );
+  background-size: 250% 250%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: brightness(0.5) saturate(0.7);
+  animation: oilSlickShift 4.5s ease infinite;
+}
+
 
 @utility section-symphonic {
   padding-top: clamp(4rem, 8vw, 8rem);
@@ -127,3 +235,55 @@
   /* Extra bottom padding to blend smoothly into the footer */
   padding-bottom: clamp(7rem, 10vw + 2rem, 12rem);
 }
+
+/* ==========================================================================
+   City of Edmonton Visual Identity Standards (VIS Book 1) Typography Tokens
+   Scoped primarily for .test-sandbox prototype validation
+   ========================================================================== */
+
+.vis-font-sans {
+  font-family: 'Prelo Pro', 'Open Sans', system-ui, -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+}
+
+.vis-font-serif {
+  font-family: 'Quercus 10', 'PT Serif', Georgia, 'Times New Roman', serif;
+}
+
+.vis-font-slab {
+  font-family: 'Prelo Pro Slab', 'Open Sans', system-ui, Arial, sans-serif;
+}
+
+/* Headlines: -10 tracking (-0.025em), leading = pt size (1.0), 3-4 words/line rule */
+.vis-headline {
+  font-family: 'Prelo Pro', 'Open Sans', system-ui, Arial, sans-serif;
+  letter-spacing: -0.025em;
+  line-height: 1.0;
+  text-wrap: balance;
+}
+
+/* Titles / Subtitles: minimum 50% smaller than headlines, leading = 1.125 */
+.vis-title {
+  font-family: 'Prelo Pro', 'Open Sans', system-ui, Arial, sans-serif;
+  line-height: 1.125;
+}
+
+/* Body: leading = 1.5 pt size, strictly flush-left / ragged-right, max 4 columns width */
+.vis-body {
+  font-family: 'Prelo Pro', 'Open Sans', system-ui, Arial, sans-serif;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.vis-body-serif {
+  font-family: 'Quercus 10', 'PT Serif', Georgia, serif;
+  line-height: 1.5;
+  text-align: left;
+}
+
+/* Metadata, callouts & headers/footers */
+.vis-meta {
+  font-family: 'Prelo Pro Slab', 'Open Sans', system-ui, Arial, sans-serif;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+

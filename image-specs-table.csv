@@ -1,0 +1,9 @@
+Slot,Image Role,Page Placement,Subject & Content Notes,Aspect Ratio,Export Dimensions (px),Desktop Display Height,File Budget,Recommended File Name
+01,Hero Cover Banner,Top banner across full width of header,"Ultra-wide panoramic landscape. Frontline operations in motion, yards, or cityscape. Avoid vertical subjects.",21:9 to 3.5:1,1920 × 550,320 to 360 px,< 180 KB,01-hero-panorama.webp
+02,Branch Manager Portrait,Leadership message section,"Executive headshot, warm natural lighting, professional civic backdrop. Square crop.",1:1,600 × 600,180 × 180 px,< 60 KB,02-manager-portrait.webp
+03,Objective Feature 1,Strategic Priorities (split card left/right),"Tactical frontline work, staff operating equipment, safety checks, or field customer interactions.",4:3,1200 × 900,420 px,< 120 KB,03-objective-primary.webp
+04,Objective Feature 2,Strategic Priorities (split card reverse),"Secondary service delivery story, outreach team, depot staging, or internal process in action.",4:3,1200 × 900,420 px,< 120 KB,04-objective-secondary.webp
+05,Mid-Page Breakout,Full-bleed editorial transition between sections,"Wide landscape view of city infrastructure, fleet depots, parks, or facilities. Letterbox style.",16:6,1920 × 720,360 to 380 px,< 160 KB,05-breakout-fullbleed.webp
+06,Looking Ahead Feature,Capital projects & upcoming cycle initiatives,"New vehicles, tech upgrades, facility construction, or route network expansions. Standard editorial crop.",3:2,1200 × 800,420 px,< 130 KB,06-looking-ahead.webp
+07,Milestone Spotlight,Dedicated historical or special campaign card,"Anniversary milestone, innovation pilot, sustainability award, or team recognition.",16:9,1200 × 675,330 px,< 100 KB,07-milestone-spotlight.webp
+08,Closing Footer,Atmospheric background layer at page bottom,"Twilight operations, depot return, or quiet street scape with branch colour wash. Low contrast.",16:6,1920 × 640,300 to 320 px,< 140 KB,08-footer-ambient.webp

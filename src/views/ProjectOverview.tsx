@@ -3,6 +3,7 @@ import { departmentInfo } from '../data/department';
 import { allBranchPlans } from '../data/plans';
 import { BranchPlan } from '../types/asp';
 import { Check, ArrowRight, Palette } from 'lucide-react';
+import TypographyLab from '../components/test/TypographyLab';
 
 interface ProjectOverviewProps {
   onSelectBranch: (slug: string) => void;
@@ -293,6 +294,9 @@ export const ProjectOverview: React.FC<ProjectOverviewProps> = ({ onSelectBranch
           ))}
         </div>
       </section>
+
+      {/* Typography Exploration & System Specimen Lab */}
+      <TypographyLab />
     </div>
   );
 };

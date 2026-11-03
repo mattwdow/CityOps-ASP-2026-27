@@ -1,4 +1,5 @@
 import { motion } from 'motion/react';
+import carrieImg from '../assets/carrie-hotton-macdonald.png';
 
 export default function Message() {
   return (
@@ -19,8 +20,12 @@ export default function Message() {
             </div>
             
             <div className="flex items-center gap-10 shrink-0">
-              <div className="relative w-[168px] h-[168px] overflow-hidden rounded-full border-2 border-white/20 bg-surface-container-highest flex items-center justify-center text-center p-3 shadow-lg">
-                <span className="text-[15px] font-bold uppercase tracking-tighter text-on-surface-variant">Picture of Carrie</span>
+              <div className="relative w-[168px] h-[168px] overflow-hidden rounded-full border-2 border-white/20 bg-surface-container-highest flex items-center justify-center text-center shadow-lg">
+                <img 
+                  src={carrieImg} 
+                  alt="Carrie Hotton-MacDonald, Branch Manager, ETS" 
+                  className="w-full h-full object-cover object-top"
+                />
               </div>
               <div className="bg-white/60 backdrop-blur-sm p-6 rounded-xl shadow-sm border border-white/40">
                 <p className="text-2xl font-semibold text-[#003461] uppercase tracking-wide">Carrie Hotton-MacDonald</p>

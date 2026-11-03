@@ -16,6 +16,7 @@ When a prompt contains any of the following scoping commands, restrict or broade
 | `/ets` | Edmonton Transit Service | `src/data/plans.ts` (`etsPlan`), `src/components/{Hero,Message,Impact,Results2025,RouteChanges,LookingAhead2026,Dats50,Nav}.tsx`, `src/assets/` | `#003461` Edmonton Navy, `#F4B223` Gold |
 | `/ffs` | Fleet and Facility Services | `src/data/plans.ts` (`fleetPlan`), `src/assets/fleet/` | `#1E3A8A` Municipal Blue, `#475569` Steel Gray |
 | `/waste` | Waste Management Services | `src/data/plans.ts` (`wastePlan`), `src/assets/waste/` | `#15803D` Forest Green, `#84CC16` Lime |
+| `/test` | TEST Sandbox (Design features) | `src/data/plans.ts` (`testPlan`), `src/components/test/*` | Sandboxed experimentation |
 | `/all` | Universal Department-Wide | `src/data/department.ts`, all branch plans in `src/data/plans.ts`, `src/views/ProjectOverview.tsx`, `src/components/MasterHeader.tsx`, `src/views/BranchPlanView.tsx` | Synchronize all branches |
 
 ## Operational Rules

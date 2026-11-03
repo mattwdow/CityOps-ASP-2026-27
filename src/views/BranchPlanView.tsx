@@ -16,12 +16,59 @@ import RouteChanges from '../components/RouteChanges';
 import LookingAhead2026 from '../components/LookingAhead2026';
 import Dats50 from '../components/Dats50';
 
+import TestNav from '../components/test/Nav';
+import TestHero from '../components/test/Hero';
+import TestMessage from '../components/test/Message';
+import TestObjectives from '../components/test/Objectives';
+import TestImpact from '../components/test/BranchByTheNumbers';
+import TestResults2025 from '../components/test/Results2025';
+import TestRouteChanges from '../components/test/RouteChanges';
+import TestRouteReportCard from '../components/test/RouteReportCard';
+import TestLookingAhead2026 from '../components/test/LookingAhead2026';
+import ReactBitsLab from '../components/test/ReactBitsLab';
+import ArcPayExpandSection from '../components/test/ArcPayExpandSection';
+import ByTheNumbersLab from '../components/test/ByTheNumbersLab';
+import RouteGuesser from '../components/test/RouteGuesser';
+import ArcTapCapGame from '../components/test/ArcTapCapGame';
+import TestDats50 from '../components/test/Dats50';
+import TestFinaleParallax from '../components/test/FinaleParallax';
+import TestFooter from '../components/test/Footer';
+
 interface BranchPlanViewProps {
   plan: BranchPlan;
   onBackToOverview: () => void;
 }
 
 export const BranchPlanView: React.FC<BranchPlanViewProps> = ({ plan, onBackToOverview }) => {
+  // Isolated TEST Sandbox Experience
+  if (plan.slug === 'test') {
+    return (
+      <div className="w-full flex-grow flex flex-col relative text-on-background bg-white test-sandbox">
+        <TestNav />
+        <main id="main-content" tabIndex={-1} className="flex-grow flex flex-col w-full focus:outline-none">
+          <TestHero />
+          <div id="message"><TestMessage /></div>
+          <div id="objectives"><TestObjectives /></div>
+          <div id="impact"><TestImpact /></div>
+          <div id="results"><TestResults2025 /></div>
+          <div id="highlights">
+            <TestDats50 />
+            <TestRouteChanges />
+            <TestRouteReportCard />
+          </div>
+          <div id="service-plan"><TestLookingAhead2026 /></div>
+          <ReactBitsLab />
+          <ArcPayExpandSection />
+          <ByTheNumbersLab />
+          <RouteGuesser />
+          <ArcTapCapGame />
+          <TestFinaleParallax />
+        </main>
+        <TestFooter />
+      </div>
+    );
+  }
+
   // If this is ETS, render the original specialized scrollytelling experience
   if (plan.slug === 'ets') {
     return (
