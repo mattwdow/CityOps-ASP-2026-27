@@ -31,10 +31,6 @@ COPY --from=builder /app/dist /usr/share/nginx/html
 # Copy custom NGINX configuration (configured for port 8080)
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Copy HTTP Basic Auth credentials
-COPY .htpasswd /etc/nginx/.htpasswd
-RUN chmod 644 /etc/nginx/.htpasswd
-
 # Google Cloud Run default port
 EXPOSE 8080
 
