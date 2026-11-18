@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion, useReducedMotion } from 'motion/react';
+import { useMotionPreference } from '../../../context/MotionContext';
 
 interface SplitTextProps {
   text: string;
@@ -8,7 +9,9 @@ interface SplitTextProps {
 }
 
 export function SplitText({ text, className = '', delay = 0.05 }: SplitTextProps) {
-  const prefersReducedMotion = useReducedMotion();
+  const osReduced = useReducedMotion();
+  const { animationsEnabled } = useMotionPreference();
+  const prefersReducedMotion = osReduced || !animationsEnabled;
 
   if (prefersReducedMotion) {
     return <span className={className}>{text}</span>;

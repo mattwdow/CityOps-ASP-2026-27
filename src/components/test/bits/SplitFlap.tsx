@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
+import { useMotionPreference } from '../../../context/MotionContext';
 
 interface SplitFlapProps {
   text: string;
@@ -14,7 +15,9 @@ export function SplitFlap({
   textColor = 'text-[#F4B223]',
   bgColor = 'bg-[#00213d]',
 }: SplitFlapProps) {
-  const prefersReducedMotion = useReducedMotion();
+  const osReduced = useReducedMotion();
+  const { animationsEnabled } = useMotionPreference();
+  const prefersReducedMotion = osReduced || !animationsEnabled;
   const [displayChars, setDisplayChars] = useState<string[]>([]);
   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 -.';
 

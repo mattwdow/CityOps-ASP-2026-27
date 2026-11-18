@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import arcPayImg from '../../assets/Arc Pay.png';
 import { motion, useScroll, useTransform, useReducedMotion } from 'motion/react';
+import { useMotionPreference } from '../../context/MotionContext';
 
 /**
  * Continuous Smooth-Interpolated Sticky Scrollytelling Section
@@ -13,7 +14,9 @@ import { motion, useScroll, useTransform, useReducedMotion } from 'motion/react'
  *  - Every single wheel notch visibly zooms out the container proportionally.
  */
 export default function ArcPayExpandSection() {
-  const prefersReduced = useReducedMotion();
+  const osReduced = useReducedMotion();
+  const { animationsEnabled } = useMotionPreference();
+  const prefersReduced = osReduced || !animationsEnabled;
   const containerRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({

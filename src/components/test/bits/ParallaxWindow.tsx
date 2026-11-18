@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform, useReducedMotion } from 'motion/react';
+import { useMotionPreference } from '../../../context/MotionContext';
 
 interface ParallaxWindowProps {
   src: string;
@@ -9,7 +10,9 @@ interface ParallaxWindowProps {
 }
 
 export function ParallaxWindow({ src, alt, className = '', speed = 0.15 }: ParallaxWindowProps) {
-  const prefersReducedMotion = useReducedMotion();
+  const osReduced = useReducedMotion();
+  const { animationsEnabled } = useMotionPreference();
+  const prefersReducedMotion = osReduced || !animationsEnabled;
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,

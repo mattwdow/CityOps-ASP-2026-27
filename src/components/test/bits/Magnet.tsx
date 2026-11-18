@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
+import { useMotionPreference } from '../../../context/MotionContext';
 
 interface MagnetProps {
   children: React.ReactNode;
@@ -9,7 +10,9 @@ interface MagnetProps {
 }
 
 export function Magnet({ children, padding = 40, disabled = false, className = '' }: MagnetProps) {
-  const prefersReducedMotion = useReducedMotion();
+  const osReduced = useReducedMotion();
+  const { animationsEnabled } = useMotionPreference();
+  const prefersReducedMotion = osReduced || !animationsEnabled;
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const ref = useRef<HTMLDivElement>(null);
 

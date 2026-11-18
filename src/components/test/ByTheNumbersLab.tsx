@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useInView, useReducedMotion } from 'motion/react';
+import { useMotionPreference } from '../../context/MotionContext';
 import { 
   Bus, Train, CreditCard, Clock, 
   MapPin, Calendar, ShoppingBag, Truck, Navigation,
@@ -17,7 +18,9 @@ function CountUpNumber({
   decimals?: number; 
   duration?: number;
 }) {
-  const prefersReduced = useReducedMotion();
+  const osReduced = useReducedMotion();
+  const { animationsEnabled } = useMotionPreference();
+  const prefersReduced = osReduced || !animationsEnabled;
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, margin: "0px 0px -40px 0px" });
 
@@ -65,7 +68,9 @@ function CountUpNumber({
 }
 
 function FlutterNumber({ value, suffix = '' }: { value: string; suffix?: string }) {
-  const prefersReduced = useReducedMotion();
+  const osReduced = useReducedMotion();
+  const { animationsEnabled } = useMotionPreference();
+  const prefersReduced = osReduced || !animationsEnabled;
   const [display, setDisplay] = useState(prefersReduced ? value : '---');
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true });

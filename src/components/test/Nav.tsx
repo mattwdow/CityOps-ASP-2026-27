@@ -21,6 +21,14 @@ export default function Nav() {
 
   const shouldDisableMotion = prefersReducedMotion || !animationsEnabled;
 
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: shouldDisableMotion ? 'auto' : 'smooth' });
+    }
+  };
+
   return (
     <nav className={`fixed top-12 left-0 w-full z-50 transition-colors duration-200 px-4 sm:px-8 py-3 ${scrolled ? 'bg-[#003461] shadow-md' : 'bg-[#003461]'}`}>
       <div className="flex flex-col lg:flex-row items-center justify-between w-full max-w-[1400px] mx-auto gap-2 lg:gap-8">
@@ -28,13 +36,13 @@ export default function Nav() {
           ETS Annual Service Plan 2025/2026
         </div>
         <div className="flex flex-wrap lg:flex-nowrap justify-center items-center gap-x-4 lg:gap-6 gap-y-1 vis-font-sans text-xs uppercase tracking-wider text-white/80">
-          <a className="hover:text-white hover:underline transition-colors whitespace-nowrap" href="#message">Message</a>
-          <a className="hover:text-white hover:underline transition-colors whitespace-nowrap" href="#objectives">Objectives</a>
-          <a className="hover:text-white hover:underline transition-colors whitespace-nowrap" href="#impact">By The Numbers</a>
-          <a className="hover:text-white hover:underline transition-colors whitespace-nowrap" href="#results">Results 2025</a>
-          <a className="hover:text-white hover:underline transition-colors whitespace-nowrap" href="#highlights">Highlights</a>
-          <a className="hover:text-white hover:underline transition-colors whitespace-nowrap" href="#route-report-card">Report Card</a>
-          <a className="hover:text-white hover:underline transition-colors whitespace-nowrap" href="#service-plan">Service Plan 2026</a>
+          <a className="hover:text-white hover:underline transition-colors whitespace-nowrap" href="#message" onClick={(e) => scrollToSection(e, 'message')}>Message</a>
+          <a className="hover:text-white hover:underline transition-colors whitespace-nowrap" href="#objectives" onClick={(e) => scrollToSection(e, 'objectives')}>Objectives</a>
+          <a className="hover:text-white hover:underline transition-colors whitespace-nowrap" href="#impact" onClick={(e) => scrollToSection(e, 'impact')}>By The Numbers</a>
+          <a className="hover:text-white hover:underline transition-colors whitespace-nowrap" href="#results" onClick={(e) => scrollToSection(e, 'results')}>Results 2025</a>
+          <a className="hover:text-white hover:underline transition-colors whitespace-nowrap" href="#highlights" onClick={(e) => scrollToSection(e, 'highlights')}>Highlights</a>
+          <a className="hover:text-white hover:underline transition-colors whitespace-nowrap" href="#route-report-card" onClick={(e) => scrollToSection(e, 'route-report-card')}>Report Card</a>
+          <a className="hover:text-white hover:underline transition-colors whitespace-nowrap" href="#service-plan" onClick={(e) => scrollToSection(e, 'service-plan')}>Service Plan 2026</a>
 
           {/* Accessible Animation Toggle Button: Circular 'A' */}
           <button

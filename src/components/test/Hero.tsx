@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
+import { useMotionPreference } from '../../context/MotionContext';
 import { ChevronDown, Sparkles } from 'lucide-react';
 import busWrapImg from '../../assets/buswrap-cropped.png';
 
@@ -86,7 +87,9 @@ const TRANSITION_OPTIONS: TransitionOption[] = [
 ];
 
 export default function Hero() {
-  const prefersReducedMotion = useReducedMotion();
+  const osReduced = useReducedMotion();
+  const { animationsEnabled } = useMotionPreference();
+  const prefersReducedMotion = osReduced || !animationsEnabled;
   const titleContainerRef = useRef<HTMLDivElement>(null);
   const textMeasureRef = useRef<HTMLHeadingElement>(null);
   const [fontSize, setFontSize] = useState<number>(56);
@@ -119,7 +122,7 @@ export default function Hero() {
   const activeMeta = TRANSITION_OPTIONS.find((t) => t.id === activeStyle) || TRANSITION_OPTIONS[0];
 
   return (
-    <div className="relative flex flex-col w-full h-[calc(100dvh-104px)] mt-[104px] bg-white overflow-hidden select-none font-sans">
+    <div className="relative flex flex-col w-full h-[calc(100dvh-88px)] mt-[88px] bg-white overflow-hidden select-none font-sans">
       
       {/* 1. Full-Bleed Artwork Billboard - Strictly Dynamic Top Half (48-50% viewport height) */}
       <div className="relative w-full h-[48%] min-h-[220px] overflow-hidden bg-neutral-900 shrink-0">

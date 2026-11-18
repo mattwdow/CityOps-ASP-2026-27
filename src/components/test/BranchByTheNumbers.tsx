@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { useInView, useReducedMotion } from 'motion/react';
+import { useMotionPreference } from '../../context/MotionContext';
 
 // Roll / Count-Up Tabular Number Component
 function TabularCountNumber({ 
@@ -13,7 +14,9 @@ function TabularCountNumber({
   decimals?: number; 
   duration?: number;
 }) {
-  const prefersReduced = useReducedMotion();
+  const osReduced = useReducedMotion();
+  const { animationsEnabled } = useMotionPreference();
+  const prefersReduced = osReduced || !animationsEnabled;
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, margin: '0px 0px -40px 0px' });
 

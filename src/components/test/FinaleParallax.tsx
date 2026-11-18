@@ -1,10 +1,13 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform, useReducedMotion } from 'motion/react';
+import { useMotionPreference } from '../../context/MotionContext';
 import footerImg from '../../assets/footer.png';
 
 export default function FinaleParallax() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const prefersReducedMotion = useReducedMotion();
+  const osReduced = useReducedMotion();
+  const { animationsEnabled } = useMotionPreference();
+  const prefersReducedMotion = osReduced || !animationsEnabled;
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"]

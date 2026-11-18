@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { motion, useInView, useMotionValue, useSpring, useReducedMotion } from 'motion/react';
+import { useMotionPreference } from '../../../context/MotionContext';
 
 interface RollingDigitProps {
   digit: number;
@@ -38,7 +39,9 @@ interface RollingNumberProps {
 }
 
 export function RollingNumber({ value, suffix = '', decimals = 0, className = '' }: RollingNumberProps) {
-  const prefersReducedMotion = useReducedMotion();
+  const osReduced = useReducedMotion();
+  const { animationsEnabled } = useMotionPreference();
+  const prefersReducedMotion = osReduced || !animationsEnabled;
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, margin: '0px 0px -40px 0px' });
 

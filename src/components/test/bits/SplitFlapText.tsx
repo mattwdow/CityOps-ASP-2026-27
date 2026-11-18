@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { useMotionPreference } from '../../../context/MotionContext';
 import './SplitFlapText.css';
 
 const DEFAULT_WORDS = ['LAUNCH READY', 'SYNC ONLINE', 'SIGNAL LIVE'];
@@ -73,6 +74,7 @@ const getReducedMotion = () =>
 
 const usePrefersReducedMotion = () => {
   const [prefersReduced, setPrefersReduced] = useState(getReducedMotion);
+  const { animationsEnabled } = useMotionPreference();
 
   useEffect(() => {
     if (typeof window === 'undefined' || !window.matchMedia) return;
@@ -86,7 +88,7 @@ const usePrefersReducedMotion = () => {
     return () => mediaQuery.removeEventListener('change', handleChange);
   }, []);
 
-  return prefersReduced;
+  return prefersReduced || !animationsEnabled;
 };
 
 const SplitFlapText = ({
